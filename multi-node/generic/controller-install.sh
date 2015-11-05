@@ -90,7 +90,7 @@ ExecStart=/usr/bin/kubelet \
   --hostname-override=${ADVERTISE_IP} \
   --cluster_dns=${DNS_SERVICE_IP} \
   --cluster_domain=cluster.local \
-  --cadvisor-port=0
+  --cadvisor-port=4194
 Restart=always
 RestartSec=10
 
@@ -149,6 +149,7 @@ spec:
     command:
     - /hyperkube
     - apiserver
+    - --insecure-bind-address=0.0.0.0
     - --bind-address=0.0.0.0
     - --etcd_servers=${ETCD_ENDPOINTS}
     - --allow-privileged=true
