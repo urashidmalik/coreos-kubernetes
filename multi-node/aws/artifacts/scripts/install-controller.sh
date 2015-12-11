@@ -5,7 +5,7 @@ set -e
 export ETCD_ENDPOINTS=
 
 # Specify the version (vX.Y.Z) of Kubernetes assets to deploy
-export K8S_VER=v1.1.1
+export K8S_VER=v1.1.2
 
 # The CIDR network to use for pod IPs.
 # Each pod launched in the cluster will be assigned an IP out of this range.
@@ -101,8 +101,7 @@ ExecStart=/usr/bin/kubelet \
   --allow-privileged=true \
   --config=/etc/kubernetes/manifests \
   --cluster_dns=${DNS_SERVICE_IP} \
-  --cluster_domain=cluster.local \
-  --cadvisor-port=0
+  --cluster_domain=cluster.local
 Restart=always
 RestartSec=10
 
