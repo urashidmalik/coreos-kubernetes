@@ -132,10 +132,10 @@ spec:
     - /hyperkube
     - apiserver
     - --bind-address=0.0.0.0
-    - --etcd_servers=${ETCD_ENDPOINTS}
+    - --etcd-servers=${ETCD_ENDPOINTS}
     - --allow-privileged=true
     - --service-cluster-ip-range=${SERVICE_IP_RANGE}
-    - --secure_port=443
+    - --secure-port=443
     - --advertise-address=${ADVERTISE_IP}
     - --admission-control=NamespaceLifecycle,NamespaceExists,LimitRanger,SecurityContextDeny,ServiceAccount,ResourceQuota
     - --tls-cert-file=/etc/kubernetes/ssl/apiserver.pem
@@ -265,7 +265,7 @@ spec:
     name: manifest-dst
 ```
 
-#### Set Up the kube-controller-manager Pod
+### Set Up the kube-controller-manager Pod
 
 The controller manager is responsible for reconciling any required actions based on changes to [Replication Controllers][rc-overview].
 
@@ -366,7 +366,7 @@ $ sudo systemctl daemon-reload
 Earlier it was mentioned that flannel stores cluster-level configuration in etcd. We need to configure our Pod network IP range now. Since etcd was started earlier, we can set this now. If you don't have etcd running, start it now.
 
 * Replace `$POD_NETWORK`
-* Replace `$ETCD_SERVER` with one host from `$ETCD_ENDPOINTS`
+* Replace `$ETCD_SERVER` with one url (`http://ip:port`) from `$ETCD_ENDPOINTS`
 
 ```sh
 $ curl -X PUT -d "value={\"Network\":\"$POD_NETWORK\",\"Backend\":{\"Type\":\"vxlan\"}}" "$ETCD_SERVER/v2/keys/coreos.com/network/config"
