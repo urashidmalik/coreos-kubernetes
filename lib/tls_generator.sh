@@ -24,6 +24,20 @@ echo "${magenta}Creating Apiserver Certificate ..."
 ./init-ssl $SSL_DIR apiserver $API_FQDN "IP.1=10.0.0.50,IP.2=11.1.2.1,DNS.1=$API_FQDN,DNS.2=kubernetes,DNS.3=comkubernetes.default,DNS.4=kubernetes.default.svc,DNS.5=kubernetes.default.svc.cluster.local"
 echo "${magenta}Creating Worker Certificate  ..."
 ./init-ssl $SSL_DIR worker $WORKER_FQDN "DNS.1=$WORKER_FQDN,DNS.2=*.*.cluster.internal,DNS.3=*.ec2.internal"
+echo "${magenta}Creating Client Certificate for devops Admin box ..."
+./init-ssl $SSL_DIR admin kube-admin
+
+echo ""
+echo ""
+echo "${magenta}Convert Certificate (CA, Apiserver, Worker) to base64  ..."
+cd $SSL_DIR
+cat ca.pem | base64 > ca.pem.b64
+cat apiserver.pem | base64 > apiserver.pem.b64
+cat apiserver-key.pem | base64 > apiserver-key.pem.b64
+cat worker.pem | base64 > worker.pem.b64
+cat worker-key.pem | base64 > worker-key.pem.b64
+echo ""
+echo "${magenta}... THANK YOU ..."
 
 
 #read
