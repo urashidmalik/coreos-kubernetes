@@ -21,9 +21,9 @@ mkdir -p  $SSL_DIR
 echo "${magenta}Creating CA Certificate for Signing ..."
 ./init-ssl-ca $SSL_DIR
 echo "${magenta}Creating Apiserver Certificate ..."
-./init-ssl $SSL_DIR apiserver $API_FQDN "IP.1=10.0.0.50,IP.2=11.1.2.1,DNS.1=$API_FQDN,DNS.2=kubernetes,DNS.3=comkubernetes.default,DNS.4=kubernetes.default.svc,DNS.5=kubernetes.default.svc.cluster.local"
+./init-ssl $SSL_DIR apiserver $API_FQDN "IP.1=10.0.0.50,IP.2=11.1.2.1,IP.3=10.3.0.1,DNS.1=$API_FQDN,DNS.2=kubernetes,DNS.3=kubernetes.default,DNS.4=kubernetes.default.svc,DNS.5=kubernetes.default.svc.cluster.local"
 echo "${magenta}Creating Worker Certificate  ..."
-./init-ssl $SSL_DIR worker $WORKER_FQDN "DNS.1=$WORKER_FQDN,DNS.2=*.*.cluster.internal,DNS.3=*.ec2.internal"
+./init-ssl $SSL_DIR worker $WORKER_FQDN "DNS.1=$WORKER_FQDN,DNS.2=*.*.cluster.internal,DNS.3=*.ec2.internal,DNS.4=*.*.compute.internal"
 echo "${magenta}Creating Client Certificate for devops Admin box ..."
 ./init-ssl $SSL_DIR admin kube-admin
 

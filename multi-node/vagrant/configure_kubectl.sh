@@ -3,7 +3,7 @@ magenta=`tput setaf 5; tput bold;`
 echo "${magenta}Starting CoreOS Cluster ..."
 vagrant up
 
-curl https://storage.googleapis.com/kubernetes-release/release/v1.0.6/bin/$(uname | tr '[:upper:]' '[:lower:]'$)/amd64/kubectl -o /usr/local/bin/kubectl
+curl https://storage.googleapis.com/kubernetes-release/release/v1.1.1/bin/$(uname | tr '[:upper:]' '[:lower:]'$)/amd64/kubectl -o /usr/local/bin/kubectl
 chmod +x /usr/local/bin/kubectl
 sleep 10
 
